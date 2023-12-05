@@ -38,3 +38,28 @@ func threeSum(nums []int) [][]int {
 	}
 	return res
 }
+
+func threeSum1(nums []int) [][]int {
+	sort.Ints(nums)
+	res := [][]int{}
+	m := make(map[[3]int]struct{}, 0)
+	for i := 0; i < len(nums)-2; i++ {
+		left := i + 1
+		right := len(nums) - 1
+		for left < right {
+			if nums[i]+nums[left]+nums[right] == 0 {
+				key := [3]int{i, left, right}
+				m[key] = struct{}{}
+			} else if nums[i]+nums[left]+nums[right] > 0 {
+				right--
+			} else {
+				left++
+			}
+		}
+
+	}
+	for key := range m {
+		res = append(res, key[:])
+	}
+	return res
+}
