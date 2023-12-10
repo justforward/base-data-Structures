@@ -17,7 +17,7 @@ package main
 //
 //	if len(path) == k {
 //		if targetSum == sum {
-//			tmp := make([]int, k) // 这里为什么要一定设置大小？ copy的底层实现：从源切片/数组的开头开始，逐个复制元素到目标切片/数组，直到达到两者中长度较短的那一个。
+//			tmp := make([]int, k) // 这里为什么要一定设置大小？ copy的底层实现：从源切片/数组的开头开始，逐个复制元素到目标切片/1数组，直到达到两者中长度较短的那一个。
 //			copy(tmp, path)
 //			res = append(res, tmp)
 //			return
