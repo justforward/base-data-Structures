@@ -1,23 +1,32 @@
 package main
 
-func generateParenthesis(n int) []string {
-	res := make([]string, 0)
-	dfs("", n, n, &res)
+func numIslands(grid [][]byte) int {
+	res := 0
+	length := len(grid)
+	width := len(grid[0])
+
+	for i := 0; i < length; i++ {
+		for j := 0; j < width; j++ {
+			if grid[i][j] == '1' {
+				res++
+				dfs(grid, i, j, length, width)
+			}
+		}
+	}
 	return res
 }
 
-func dfs(value string, left, right int, res *[]string) {
-	if left == 0 && right == 0 {
-		*res = append(*res, value)
+func dfs(grid [][]byte, i, j, length, width int) {
+	if i < 0 || j < 0 || i >= length || j >= width {
 		return
 	}
-	if left > right {
+	if grid[i][j] == '0' {
 		return
 	}
-	if left > 0 {
-		dfs(value+"(", left-1, right, res)
-	}
-	if right > 0 {
-		dfs(value+")", left, right-1, res)
-	}
+	grid[i][j] = '0'
+	dfs(grid, i+1, j, length, width)
+	dfs(grid, i-1, j, length, width)
+	dfs(grid, i, j+1, length, width)
+	dfs(grid, i, j-1, length, width)
+
 }
